@@ -20,25 +20,23 @@ void drive_robot(float lin_x, float ang_z)
 void process_image_callback(const sensor_msgs::Image img)
 {
     int white_pixel = 255;
-    float third_width = img.step/3;
-    int i,j;
+    int i,j;    
 
     // for loop for each pixel in the image
     for (i = 0; i < img.height; i++){
        for (j = 0; j < img.step; j++){
             // checking where is the pixel and sending the coresponding command
-            if (img.data[i*j] == white_pixel){
+            if (img.data[i*img.step + j] == white_pixel){
                 ROS_INFO("Saw the ball ");
-
-                if ( j < third_width){
+                if ( j < img.width){
                     ROS_INFO("in the left");
-                    // drive_robot(0.5,0.5);
-                } else if (j > img.step - third_width){
+                    drive_robot(0.5,0.5);
+                } else if (j > img.width*2){
                     ROS_INFO("in the right");
-                    // drive_robot(0.5,-0.5);
+                    drive_robot(0.5,-0.5);
                 } else {
                     ROS_INFO("in the middle");
-                    // drive_robot(0.5,0.0);
+                    drive_robot(0.5,0.0);
                 }
                 return;  
             }                     
@@ -47,7 +45,7 @@ void process_image_callback(const sensor_msgs::Image img)
     ROS_INFO("didn't saw the ball ");
 
     // if the loop didn't found a white pixel the code will reach here
-    // drive_robot(0.0,0.0);
+    drive_robot(0.0,0.0);
 }
 
 int main(int argc, char** argv)
