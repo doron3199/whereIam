@@ -5,11 +5,88 @@
   <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo" />
   <link name="robot_footprint"></link>
 
+
   <joint name="robot_footprint_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="robot_footprint"/>
     <child link="chassis" />
   </joint>
+
+  <joint name="robot_footprint_joint2" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="robot_footprint"/>
+    <child link="cart_body" />
+  </joint>
+
+  <link name="cart_body">
+    <pose> 0 0 0.3 0 0 0 </pose>
+    <inertial>
+      <mass value="15.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      <inertia
+          ixx="0.166667" ixy="0" ixz="0"
+          iyy="0.166667" iyz="0"
+          izz="0.166667"
+      />
+    </inertial>
+    <collision name='cart_collision'>
+      <origin xyz="0 0 0.4" rpy=" 0 0 0"/> 
+      <geometry>
+        <box size="1 0.6 0.8"/>
+      </geometry>
+    </collision>
+
+    <visual name='cart_visual_button'>
+      <origin xyz="0 0 0.3" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="1 0.6 0.05"/>
+      </geometry>
+      <origin xyz="-0.5 -0.25 0" rpy=" 0 0 0"/>
+    </visual>
+
+    <visual name='cart_visual_middle'>
+      <origin xyz="0 0 0.5" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="1 0.6 0.05"/>
+      </geometry>
+    </visual>
+
+    <visual name='cart_visual_top'>
+      <origin xyz="0 0 0.7" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="1 0.6 0.05"/>
+      </geometry>
+    </visual>
+
+    <visual name='cart_visual_fl'>
+      <origin xyz="0.5 0.25 0.4" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.8"/>
+      </geometry>
+    </visual>
+
+    <visual name='cart_visual_bl'>
+      <origin xyz="-0.5 0.25 0.4" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.8"/>
+      </geometry>
+    </visual>
+
+    <visual name='cart_visual_fr'>
+      <origin xyz="0.5 -0.25 0.4" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.8"/>
+      </geometry>
+    </visual>
+
+    <visual name='cart_visual_br'>
+      <origin xyz="-0.5 -0.25 0.4" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.8"/>
+      </geometry>
+    </visual>
+
+  </link>
 
   <link name='chassis'>
     <pose>0 0 0.1 0 0 0</pose>
@@ -27,47 +104,20 @@
     <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
-        <box size=".4 .2 .1"/>
+        <box size="1.2 0.8 0.05"/>
       </geometry>
     </collision>
 
     <visual name='chassis_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
-        <box size=".4 .2 .1"/>
-      </geometry>
-    </visual>
-
-
-    <collision name='back_caster_collision'>
-      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
-      <geometry>
-        <sphere radius="0.0499"/>
-      </geometry>
-    </collision>
-
-    <visual name='back_caster_visual'>
-      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
-      <geometry>
-        <sphere radius="0.05"/>
-      </geometry>
-    </visual>
-
-    <collision name='front_caster_collision'>
-      <origin xyz="0.15 0 -0.05" rpy=" 0 0 0"/>
-      <geometry>
-        <sphere radius="0.0499"/>
-      </geometry>
-    </collision>
-
-    <visual name='front_caster_visual'>
-      <origin xyz="0.15 0 -0.05" rpy=" 0 0 0"/>
-      <geometry>
-        <sphere radius="0.05"/>
+        <box size="1.2 0.8 0.05"/>
       </geometry>
     </visual>
 
   </link>
+
+
 
 
 
@@ -127,8 +177,64 @@
 
   </link>
 
+<link name='back_left_wheel'>
+
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
+      />
+    </inertial>
+
+    <collision name='back_left_whee_collision'>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder  radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+
+    <visual name='back_left_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+
+  </link>
+
+<link name='back_right_wheel'>
+
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
+      />
+    </inertial>
+
+    <collision name='back_right_wheel_collision'>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> 
+      <geometry>
+        <cylinder  radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+
+    <visual name='back_right_wheel_visual'>
+      <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder  radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+
+  </link>
+
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="0 0.15 0" rpy="0 0 0"/>
+    <origin xyz="0.6 0.5 0" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -137,13 +243,34 @@
   </joint>
 
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
+    <origin xyz="0.6 -0.5 0" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
     <dynamics damping="1.0" friction="1.0"/>
   </joint>
+
+  <joint type="continuous" name="back_left_wheel_hinge">
+    <origin xyz="-0.6 0.5 0" rpy="0 0 0"/>
+    <child link="back_left_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="0.1"/>
+  </joint>
+
+  <joint type="continuous" name="back_right_wheel_hinge">
+    <origin xyz="-0.6 -0.5 0" rpy="0 0 0"/>
+    <child link="back_right_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="0.1"/>
+  </joint>
+
+
+
 
 
   <link name='camera'>
@@ -178,7 +305,7 @@
   </link>
 
   <joint type="fixed" name="camera_joint">
-    <origin xyz="0.2 0 0" rpy="0 0 0"/>
+    <origin xyz="0.60 0 0" rpy="0 0 0"/>
     <child link="camera"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -217,11 +344,13 @@
   </link>
 
   <joint type="fixed" name="hokuyo_joint">
-    <origin xyz="0.15 0 .1" rpy="0 0 0"/>
+    <origin xyz="0.6 0 .06" rpy="0 0 0"/>
     <child link="hokuyo"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
   </joint>
+
+  
 
 
 

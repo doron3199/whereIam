@@ -25,6 +25,8 @@
       <publishOdomTF>true</publishOdomTF>
     </plugin>
   </gazebo>
+ 
+
 
   <!-- camera -->
   <gazebo reference="camera">

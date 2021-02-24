@@ -30,10 +30,10 @@ void process_image_callback(const sensor_msgs::Image img)
                 ROS_INFO("Saw the ball ");
                 if ( j < img.width){
                     ROS_INFO("in the left");
-                    drive_robot(0.5,0.5);
+                    drive_robot(0.5,1);
                 } else if (j > img.width*2){
                     ROS_INFO("in the right");
-                    drive_robot(0.5,-0.5);
+                    drive_robot(0.5,-1);
                 } else {
                     ROS_INFO("in the middle");
                     drive_robot(0.5,0.0);
