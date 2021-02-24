@@ -24,9 +24,11 @@ void process_image_callback(const sensor_msgs::Image img)
 
     // for loop for each pixel in the image
     for (i = 0; i < img.height; i++){
-       for (j = 0; j < img.step; j++){
+       for (j = 0; j < img.step; j+=3){
             // checking where is the pixel and sending the coresponding command
-            if (img.data[i*img.step + j] == white_pixel){
+            if (img.data[i*img.step + j] == white_pixel &&
+             img.data[i*img.step + j + 1] == white_pixel && 
+             img.data[i*img.step + j + 2] == white_pixel){
                 ROS_INFO("Saw the ball ");
                 if ( j < img.width){
                     ROS_INFO("in the left");
