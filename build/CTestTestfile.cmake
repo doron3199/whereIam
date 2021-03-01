@@ -7,4 +7,6 @@
 subdirs(gtest)
 subdirs(first_package)
 subdirs(my_robot)
+subdirs(teleop_twist_keyboard)
 subdirs(ball_chaser)
+subdirs(pgm_map_creator)
