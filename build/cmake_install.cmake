@@ -128,9 +128,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/workspace/catkin_ws2/build/gtest/cmake_install.cmake")
   include("/home/workspace/catkin_ws2/build/first_package/cmake_install.cmake")
   include("/home/workspace/catkin_ws2/build/my_robot/cmake_install.cmake")
-  include("/home/workspace/catkin_ws2/build/teleop_twist_keyboard/cmake_install.cmake")
   include("/home/workspace/catkin_ws2/build/ball_chaser/cmake_install.cmake")
-  include("/home/workspace/catkin_ws2/build/pgm_map_creator/cmake_install.cmake")
 
 endif()
 
